@@ -1,40 +1,33 @@
-import { inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { EMPTY, fromEvent, of } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import {
   debounceTime,
   distinctUntilChanged,
   map,
-  switchMap,
 } from 'rxjs/operators';
 import { UiActions } from './ui.actions';
 
 @Injectable()
 export class UiEffects {
   private readonly actions$ = inject(Actions);
-  private readonly platformId = inject(PLATFORM_ID);
 
   scrollTracking$ = createEffect(() =>
-    isPlatformBrowser(this.platformId)
-      ? fromEvent(window, 'scroll').pipe(
-          debounceTime(50),
-          map(() => Math.round(window.scrollY)),
-          distinctUntilChanged(),
-          map((scrollY) => UiActions.updateScrollPosition({ scrollY })),
-        )
-      : EMPTY,
+    fromEvent(window, 'scroll').pipe(
+      debounceTime(50),
+      map(() => Math.round(window.scrollY)),
+      distinctUntilChanged(),
+      map((scrollY) => UiActions.updateScrollPosition({ scrollY })),
+    ),
   );
 
   sectionTracking$ = createEffect(() =>
-    isPlatformBrowser(this.platformId)
-      ? fromEvent(window, 'scroll').pipe(
-          debounceTime(100),
-          map(() => this.detectActiveSection()),
-          distinctUntilChanged(),
-          map((section) => UiActions.setActiveSection({ section })),
-        )
-      : EMPTY,
+    fromEvent(window, 'scroll').pipe(
+      debounceTime(100),
+      map(() => this.detectActiveSection()),
+      distinctUntilChanged(),
+      map((section) => UiActions.setActiveSection({ section })),
+    ),
   );
 
   private detectActiveSection(): string {
