@@ -1,0 +1,145 @@
+<section id="experience" class="py-24 px-6 bg-[#0d1117]">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Section header -->
+    <div scrollAnimate class="text-center mb-16">
+      <p class="text-[#00d4ff] text-sm font-medium tracking-[0.3em] uppercase mb-3">Where I&apos;ve worked</p>
+      <h2 class="text-4xl sm:text-5xl font-bold section-title">Experience</h2>
+    </div>
+
+    <!-- Timeline -->
+    <div class="relative">
+
+      <!-- Center spine (desktop only) -->
+      <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 timeline-line"></div>
+
+      <!-- Experience items -->
+      <div class="space-y-12 lg:space-y-0">
+        @for (exp of experiences; track exp.id; let i = $index) {
+
+          <!-- Desktop: alternating layout -->
+          <div class="hidden lg:flex items-start gap-0 relative mb-12">
+
+            <!-- Left column -->
+            <div class="w-5/12 flex justify-end pr-10">
+              @if (isLeft(i)) {
+                <div
+                  scrollAnimate
+                  direction="left"
+                  [delay]="i * 120"
+                  class="w-full p-6 rounded-2xl bg-[#161b22] border border-[#30363d] card-glow group"
+                >
+                  <div class="flex items-start justify-between gap-3 mb-4 flex-wrap">
+                    <div>
+                      <h3 class="text-lg font-bold text-[#e6edf3] group-hover:text-[#00d4ff] transition-colors duration-200">
+                        {{ exp.title }}
+                      </h3>
+                      <p class="text-[#00d4ff] font-medium text-sm mt-0.5">{{ exp.company }}</p>
+                    </div>
+                    <span class="shrink-0 px-3 py-1 rounded-full text-xs font-medium bg-[#1c2333] text-[#8b949e] border border-[#30363d]">
+                      {{ exp.period }}
+                    </span>
+                  </div>
+                  <div class="h-px bg-[#30363d] mb-4"></div>
+                  <ul class="space-y-2">
+                    @for (point of exp.highlights; track point) {
+                      <li class="flex gap-2.5 text-sm text-[#8b949e] leading-relaxed">
+                        <span class="text-[#00d4ff] mt-0.5 shrink-0">▸</span>
+                        <span>{{ point }}</span>
+                      </li>
+                    }
+                  </ul>
+                  <div class="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-[#30363d]">
+                    @for (tag of exp.tags; track tag) {
+                      <span class="px-2 py-0.5 rounded text-xs bg-[#0d1117] text-[#7c3aed] border border-[#7c3aed]/30">{{ tag }}</span>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+
+            <!-- Center dot -->
+            <div class="w-2/12 flex justify-center items-start pt-6 shrink-0">
+              <div class="relative flex items-center justify-center w-5 h-5">
+                <span class="absolute inline-flex h-5 w-5 rounded-full bg-[#00d4ff]/30 animate-ping"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-[#00d4ff]"></span>
+              </div>
+            </div>
+
+            <!-- Right column -->
+            <div class="w-5/12 flex justify-start pl-10">
+              @if (!isLeft(i)) {
+                <div
+                  scrollAnimate
+                  direction="right"
+                  [delay]="i * 120"
+                  class="w-full p-6 rounded-2xl bg-[#161b22] border border-[#30363d] card-glow group"
+                >
+                  <div class="flex items-start justify-between gap-3 mb-4 flex-wrap">
+                    <div>
+                      <h3 class="text-lg font-bold text-[#e6edf3] group-hover:text-[#00d4ff] transition-colors duration-200">
+                        {{ exp.title }}
+                      </h3>
+                      <p class="text-[#00d4ff] font-medium text-sm mt-0.5">{{ exp.company }}</p>
+                    </div>
+                    <span class="shrink-0 px-3 py-1 rounded-full text-xs font-medium bg-[#1c2333] text-[#8b949e] border border-[#30363d]">
+                      {{ exp.period }}
+                    </span>
+                  </div>
+                  <div class="h-px bg-[#30363d] mb-4"></div>
+                  <ul class="space-y-2">
+                    @for (point of exp.highlights; track point) {
+                      <li class="flex gap-2.5 text-sm text-[#8b949e] leading-relaxed">
+                        <span class="text-[#00d4ff] mt-0.5 shrink-0">▸</span>
+                        <span>{{ point }}</span>
+                      </li>
+                    }
+                  </ul>
+                  <div class="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-[#30363d]">
+                    @for (tag of exp.tags; track tag) {
+                      <span class="px-2 py-0.5 rounded text-xs bg-[#0d1117] text-[#7c3aed] border border-[#7c3aed]/30">{{ tag }}</span>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- Mobile: stacked left-border timeline -->
+          <div class="lg:hidden relative pl-8 border-l-2 border-[#30363d]">
+            <!-- Dot -->
+            <div class="absolute -left-[9px] top-6 flex items-center justify-center w-4 h-4">
+              <span class="absolute inline-flex h-4 w-4 rounded-full bg-[#00d4ff]/30 animate-ping"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00d4ff]"></span>
+            </div>
+
+            <div
+              scrollAnimate
+              [delay]="i * 80"
+              class="p-5 rounded-xl bg-[#161b22] border border-[#30363d] card-glow group"
+            >
+              <h3 class="text-base font-bold text-[#e6edf3] group-hover:text-[#00d4ff] transition-colors">{{ exp.title }}</h3>
+              <p class="text-[#00d4ff] text-sm font-medium mb-1">{{ exp.company }}</p>
+              <p class="text-xs text-[#8b949e] mb-3">{{ exp.period }}</p>
+              <ul class="space-y-1.5">
+                @for (point of exp.highlights; track point) {
+                  <li class="flex gap-2 text-xs text-[#8b949e] leading-relaxed">
+                    <span class="text-[#00d4ff] shrink-0">▸</span>
+                    <span>{{ point }}</span>
+                  </li>
+                }
+              </ul>
+              <div class="flex flex-wrap gap-1 mt-3 pt-3 border-t border-[#30363d]">
+                @for (tag of exp.tags; track tag) {
+                  <span class="px-1.5 py-0.5 rounded text-xs bg-[#0d1117] text-[#7c3aed] border border-[#7c3aed]/30">{{ tag }}</span>
+                }
+              </div>
+            </div>
+          </div>
+
+        }
+      </div>
+    </div>
+
+  </div>
+</section>

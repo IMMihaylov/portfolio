@@ -1,0 +1,81 @@
+<section id="skills" class="py-24 px-6 bg-[#161b22]">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Section header -->
+    <div scrollAnimate class="text-center mb-12">
+      <p class="text-[#00d4ff] text-sm font-medium tracking-[0.3em] uppercase mb-3">What I work with</p>
+      <h2 class="text-4xl sm:text-5xl font-bold section-title">Skills & Technologies</h2>
+    </div>
+
+    <!-- Filter tabs -->
+    <div scrollAnimate class="flex flex-wrap justify-center gap-2 mb-12">
+      @for (option of filterOptions; track option.value) {
+        <button
+          (click)="setFilter(option.value)"
+          [ngClass]="{
+            'bg-[#00d4ff] text-[#0d1117]': activeFilter() === option.value,
+            'bg-[#1c2333] text-[#8b949e] hover:text-[#e6edf3] border border-[#30363d]': activeFilter() !== option.value
+          }"
+          class="px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200"
+        >
+          {{ option.label }}
+        </button>
+      }
+    </div>
+
+    <!-- Skill groups -->
+    @for (group of filteredGroups(); track group.category; let groupIdx = $index) {
+      <div class="mb-10">
+        <h3
+          scrollAnimate
+          class="text-sm font-semibold tracking-[0.2em] uppercase text-[#8b949e] mb-5 flex items-center gap-3"
+        >
+          <span class="h-px flex-1 bg-[#30363d]"></span>
+          {{ group.label }}
+          <span class="h-px flex-1 bg-[#30363d]"></span>
+        </h3>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+          @for (skill of group.skills; track skill.name; let i = $index) {
+            <div
+              scrollAnimate
+              [delay]="i * 80"
+              class="relative p-5 rounded-xl bg-[#0d1117] border border-[#30363d] card-glow group cursor-default"
+            >
+              <!-- Color accent -->
+              <div
+                class="absolute top-0 left-0 right-0 h-0.5 rounded-t-xl opacity-60 group-hover:opacity-100 transition-opacity"
+                [style.background]="skill.color"
+              ></div>
+
+              <!-- Icon -->
+              <div
+                class="w-10 h-10 rounded-lg flex items-center justify-center mb-3 text-lg font-bold"
+                [style.background]="skill.color + '22'"
+                [style.color]="skill.color"
+              >
+                {{ skill.name.charAt(0) }}
+              </div>
+
+              <!-- Name -->
+              <p class="text-sm font-semibold text-[#e6edf3] mb-1">{{ skill.name }}</p>
+
+              <!-- Level badge -->
+              <span
+                class="text-xs px-2 py-0.5 rounded-full"
+                [ngClass]="{
+                  'bg-[#00d4ff]/10 text-[#00d4ff]': skill.level === 'expert',
+                  'bg-[#7c3aed]/10 text-[#7c3aed]': skill.level === 'advanced',
+                  'bg-[#30363d] text-[#8b949e]': skill.level === 'proficient'
+                }"
+              >
+                {{ skill.level }}
+              </span>
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+  </div>
+</section>

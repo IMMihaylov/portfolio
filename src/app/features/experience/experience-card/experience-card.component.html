@@ -1,0 +1,50 @@
+<!-- Timeline item wrapper: left or right side -->
+<div
+  scrollAnimate
+  [direction]="isLeft() ? 'left' : 'right'"
+  [delay]="index() * 120"
+  class="relative flex gap-8 items-start"
+  [class.flex-row-reverse]="!isLeft()"
+>
+  <!-- Card -->
+  <div class="w-full lg:w-5/12 p-6 rounded-2xl bg-[#161b22] border border-[#30363d] card-glow group">
+
+    <!-- Header -->
+    <div class="flex items-start justify-between gap-3 mb-4 flex-wrap">
+      <div>
+        <h3 class="text-lg font-bold text-[#e6edf3] group-hover:text-[#00d4ff] transition-colors duration-200">
+          {{ experience().title }}
+        </h3>
+        <p class="text-[#00d4ff] font-medium text-sm mt-0.5">{{ experience().company }}</p>
+      </div>
+      <span class="shrink-0 px-3 py-1 rounded-full text-xs font-medium bg-[#1c2333] text-[#8b949e] border border-[#30363d]">
+        {{ experience().period }}
+      </span>
+    </div>
+
+    <!-- Divider -->
+    <div class="h-px bg-[#30363d] mb-4"></div>
+
+    <!-- Highlights -->
+    <ul class="space-y-2">
+      @for (point of experience().highlights; track point) {
+        <li class="flex gap-2.5 text-sm text-[#8b949e] leading-relaxed">
+          <span class="text-[#00d4ff] mt-0.5 shrink-0">▸</span>
+          <span>{{ point }}</span>
+        </li>
+      }
+    </ul>
+
+    <!-- Tags -->
+    <div class="flex flex-wrap gap-1.5 mt-4 pt-4 border-t border-[#30363d]">
+      @for (tag of experience().tags; track tag) {
+        <span class="px-2 py-0.5 rounded text-xs bg-[#0d1117] text-[#7c3aed] border border-[#7c3aed]/30">
+          {{ tag }}
+        </span>
+      }
+    </div>
+  </div>
+
+  <!-- Spacer for center spine -->
+  <div class="hidden lg:block w-2/12"></div>
+</div>

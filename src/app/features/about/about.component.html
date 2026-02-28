@@ -1,0 +1,70 @@
+<section id="about" class="py-24 px-6 bg-[#0d1117]">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Section header -->
+    <div scrollAnimate class="text-center mb-16">
+      <p class="text-[#00d4ff] text-sm font-medium tracking-[0.3em] uppercase mb-3">Get to know me</p>
+      <h2 class="text-4xl sm:text-5xl font-bold section-title">About Me</h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Avatar / visual -->
+      <div scrollAnimate direction="left" class="flex justify-center lg:justify-end">
+        <div class="relative">
+          <!-- Decorative rings -->
+          <div class="absolute -inset-4 rounded-full border border-[#00d4ff]/20 animate-[pulse_4s_ease-in-out_infinite]"></div>
+          <div class="absolute -inset-8 rounded-full border border-[#7c3aed]/10 animate-[pulse_6s_ease-in-out_infinite]"></div>
+
+          <!-- Avatar placeholder -->
+          <div class="w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-gradient-to-br from-[#1c2333] to-[#161b22] border-2 border-[#30363d] flex items-center justify-center overflow-hidden relative">
+            <!-- Initials fallback -->
+            <span class="text-6xl font-bold" style="background: linear-gradient(135deg, #00d4ff, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">IM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bio text -->
+      <div scrollAnimate direction="right" class="space-y-5">
+        <h3 class="text-2xl font-bold text-[#e6edf3]">
+          Senior Frontend Engineer & Product Owner
+        </h3>
+        <p class="text-[#8b949e] leading-relaxed">
+          I'm a results-driven engineer with <span class="text-[#e6edf3] font-medium">7+ years</span> of experience
+          architecting and delivering cross-platform enterprise applications for Web, Android, and iOS.
+        </p>
+        <p class="text-[#8b949e] leading-relaxed">
+          My core strength is building scalable <span class="text-[#00d4ff] font-medium">Angular</span> architectures
+          with advanced <span class="text-[#00d4ff] font-medium">NgRx/RxJS</span> state management, offline-first capabilities,
+          and real-time workflows. I bridge the gap between technical complexity and business value — I've led
+          client workshops, owned full product lifecycles, and reduced operational overhead by over 90%.
+        </p>
+        <p class="text-[#8b949e] leading-relaxed">
+          Based in Hamburg, Germany. Fluent in English, Bulgarian, and German.
+        </p>
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 pt-2">
+          @for (tag of ['Angular', 'NgRx', 'RxJS', 'TypeScript', 'Node.js', 'Android', 'iOS', 'Clean Code']; track tag) {
+            <span class="px-3 py-1 rounded-full text-xs font-medium bg-[#1c2333] text-[#00d4ff] border border-[#30363d]">
+              {{ tag }}
+            </span>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div #statsSection class="mt-16 grid grid-cols-3 gap-6">
+      @for (stat of stats; track stat.label) {
+        <div scrollAnimate class="text-center p-6 rounded-xl bg-[#161b22] border border-[#30363d] card-glow">
+          <div class="text-4xl font-bold text-[#00d4ff] mb-1">
+            {{ stat.current }}{{ stat.suffix }}
+          </div>
+          <div class="text-sm text-[#8b949e]">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+
+  </div>
+</section>
