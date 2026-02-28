@@ -29,6 +29,8 @@ jobs:
         run: npm run build -- --configuration production
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/portfolio/browser --no-silent
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/portfolio/browser
+          publish_branch: gh-pages
