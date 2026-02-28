@@ -12,14 +12,13 @@
       <!-- Avatar / visual -->
       <div scrollAnimate direction="left" class="flex justify-center lg:justify-end">
         <div class="relative">
-          <!-- Decorative rings -->
+          <!-- Decorative ring -->
           <div class="absolute -inset-4 rounded-full border border-[#00d4ff]/20 animate-[pulse_4s_ease-in-out_infinite]"></div>
-          <div class="absolute -inset-8 rounded-full border border-[#7c3aed]/10 animate-[pulse_6s_ease-in-out_infinite]"></div>
 
           <!-- Avatar placeholder -->
-          <div class="w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-gradient-to-br from-[#1c2333] to-[#161b22] border-2 border-[#30363d] flex items-center justify-center overflow-hidden relative">
+          <div class="w-56 h-56 sm:w-64 sm:h-64 rounded-full bg-[#1c2333] border-2 border-[#30363d] flex items-center justify-center overflow-hidden relative">
             <!-- Initials fallback -->
-            <span class="text-6xl font-bold" style="background: linear-gradient(135deg, #00d4ff, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">IM</span>
+            <span class="text-6xl font-bold text-[#00d4ff]">IM</span>
           </div>
         </div>
       </div>
@@ -45,7 +44,7 @@
 
         <!-- Tags -->
         <div class="flex flex-wrap gap-2 pt-2">
-          @for (tag of ['Angular', 'NgRx', 'RxJS', 'TypeScript', 'Node.js', 'Android', 'iOS', 'Clean Code']; track tag) {
+          @for (tag of ['Angular', 'NgRx', 'RxJS', 'TypeScript', 'Node.js', 'Cordova', 'Clean Code']; track tag) {
             <span class="px-3 py-1 rounded-full text-xs font-medium bg-[#1c2333] text-[#00d4ff] border border-[#30363d]">
               {{ tag }}
             </span>

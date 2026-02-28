@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   OnInit,
@@ -31,6 +32,7 @@ export class AboutComponent implements OnInit {
   statsSection!: ElementRef<HTMLElement>;
 
   private readonly scrollService = inject(ScrollService);
+  private readonly cdr = inject(ChangeDetectorRef);
   private readonly destroyRef = takeUntilDestroyed();
 
   stats: Stat[] = [
@@ -53,6 +55,7 @@ export class AboutComponent implements OnInit {
           ...s,
           current: Math.min(tick as number, s.target),
         }));
+        this.cdr.markForCheck();
       });
   }
 }

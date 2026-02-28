@@ -5,7 +5,7 @@ export const EXPERIENCES: Experience[] = [
     id: 'nexmo-fpo',
     title: 'Frontend Developer / Product Owner',
     company: 'Nexmo Solutions GmbH',
-    period: 'May 2019 – May 2026',
+    period: 'May 2019 – Present',
     startYear: 2019,
     endYear: null,
     type: 'full-time',
@@ -16,7 +16,7 @@ export const EXPERIENCES: Experience[] = [
       'Designed a scalable NgRx/RxJS state architecture with offline-first capability, ensuring reliability in low-connectivity environments.',
       'Led client workshops, translating complex business requirements into Node.js microservices and Angular SPAs.',
     ],
-    tags: ['Angular', 'NgRx', 'RxJS', 'TypeScript', 'Node.js', 'Android', 'iOS'],
+    tags: ['Angular', 'NgRx', 'RxJS', 'TypeScript', 'Node.js', 'Cordova'],
   },
   {
     id: 'nexmo-ws',
@@ -77,7 +77,7 @@ export const EXPERIENCES: Experience[] = [
   {
     id: 'tech-support',
     title: 'Technical Support Supervisor',
-    company: 'iGaming Industry',
+    company: '60k',
     period: 'Oct 2010 – Jun 2012',
     startYear: 2010,
     endYear: 2012,

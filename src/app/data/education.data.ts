@@ -2,12 +2,13 @@ import type { Education } from '../models/education.model';
 
 export const EDUCATIONS: Education[] = [
   {
-    id: 'haw',
+    id: 'essex',
     degree: 'B.Sc.',
-    field: 'Information Engineering',
-    institution: 'HAW Hamburg',
-    location: 'Hamburg, Germany',
-    period: '2013 – 2019',
+    field: 'Management Economics',
+    institution: 'University of Essex',
+    location: 'Colchester, UK',
+    period: '2007 – 2010',
+    grade: 'First Class Honours',
   },
   {
     id: 'unwe',
@@ -18,12 +19,11 @@ export const EDUCATIONS: Education[] = [
     period: '2010 – 2012',
   },
   {
-    id: 'essex',
+    id: 'haw',
     degree: 'B.Sc.',
-    field: 'Management Economics',
-    institution: 'University of Essex',
-    location: 'Colchester, UK',
-    period: '2007 – 2010',
-    grade: 'First Class Honours',
+    field: 'Information Engineering',
+    institution: 'HAW Hamburg',
+    location: 'Hamburg, Germany',
+    period: '2013 – 2019',
   },
 ];

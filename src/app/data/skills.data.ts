@@ -62,18 +62,11 @@ export const SKILLS: Skill[] = [
   },
   // Mobile
   {
-    name: 'Android (Kotlin)',
+    name: 'Cordova (Android & iOS)',
     category: 'mobile',
     level: 'advanced',
-    icon: 'android',
-    color: '#3DDC84',
-  },
-  {
-    name: 'iOS (Swift)',
-    category: 'mobile',
-    level: 'proficient',
-    icon: 'ios',
-    color: '#000000',
+    icon: 'mobile',
+    color: '#E8E8E8',
   },
   // Data
   {
