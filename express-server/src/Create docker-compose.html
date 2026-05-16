@@ -1,0 +1,30 @@
+Create docker-compose.yml at CV — 3 services: angular (Nginx :80), express (Node :3000), mongodb (official image :27017). Express depends-on mongodb. Angular's Nginx proxies /api and /soap to express:3000.
+Create Dockerfile.angular — multi-stage: node:22-alpine builds ng build, then nginx:alpine copies dist/portfolio/browser to /usr/share/nginx/html.
+Create Dockerfile.express — node:22-alpine, WORKDIR /app, copies server/, runs npm install.
+Create nginx/default.conf — static file serving + location /api and location /soap proxied to express:3000.
+Create .env — MONGO_URI, PORT=3000, SQLITE_PATH, NODE_ENV.
+Phase 2 — Express Server (server/)
+server/package.json — deps: express, mongoose, better-sqlite3, soap, cors, dotenv.
+server/src/index.js — loads env, connects DBs, mounts all routes, registers SOAP server, listens on PORT.
+server/src/config/database.js — Mongoose connect(MONGO_URI).
+server/src/config/sqlite.js — better-sqlite3 init + CREATE TABLE IF NOT EXISTS skills (id, name, category, level, icon, color).
+server/src/models/Experience.js — Mongoose schema matching existing Experience model (title, company, period, startYear, endYear, type, highlights, tags).
+server/src/models/Contact.js — Mongoose schema: name, email, message, createdAt.
+server/src/routes/experience.routes.js — full REST CRUD: GET /, GET /:id, POST /, PUT /:id, DELETE /:id → MongoDB.
+server/src/routes/contact.routes.js — GET /, GET /:id, POST /, DELETE /:isd → MongoDB.
+server/src/soap/skills.wsdl — defines GetSkills, GetSkill, CreateSkill, UpdateSkill, DeleteSkill operations with types matching Skill model.
+server/src/soap/skills.service.js — SOAP service handler object; each operation executes better-sqlite3 queries.
+server/src/soap/skills.soap.js — calls soap.listen(app, '/soap/skills', service, wsdl) to mount SOAP server on Express.
+server/src/routes/skills.routes.js — REST adapter: each route creates a soap.createClient('http://localhost:3000/soap/skills?wsdl') and calls the relevant SOAP operation, then responds with parsed JSON.
+server/src/seed/seed.js — one-time script that seeds existing hardcoded data (from experience.data.ts values rewritten as JS) into MongoDB + SQLite on first run.
+Phase 3 — Angular Integration (portfolio)
+app.config.ts — add provideHttpClient().
+src/environments/environment.ts + environment.prod.ts — both export { apiUrl: '/api' }.
+proxy.conf.json — proxy /api and /soap → http://localhost:3000 for dev server.
+angular.json serve options — add "proxyConfig": "proxy.conf.json".
+shared/services/experience.service.ts — new injectable HttpClient-based service with getAll(), getById(), create(), update(), delete() calling /api/experiences.
+shared/services/skills.service.ts — same pattern for /api/skills.
+ExperienceComponent — inject ExperienceService, swap hardcoded EXPERIENCES import for HTTP observable via async pipe.
+SkillsComponent — inject SkillsService, swap hardcoded SKILLS import for HTTP observable via async pipe.
+contact.effects.ts — replace mailto: side-effect with HttpClient.post('/api/contacts', payload), mapping to submitSuccess / submitFailure.
+contact.component.html — build real form UI (name, email, message inputs + submit button) dispatching the existing submitForm NgRx action; show loading/success/error states already modeled in the store.
